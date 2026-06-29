@@ -1,0 +1,26 @@
+name: Generate GitHub Stats
+
+on:
+  # Her gün 03:00 UTC'de çalışır
+  schedule:
+    - cron: "0 3 * * *"
+  # Actions sekmesinden elle de tetikleyebilirsin
+  workflow_dispatch:
+  # main'e push olduğunda da bir kez üretir
+  push:
+    branches:
+      - main
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Generate stats images
+        uses: jstrieb/github-stats@master
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          # İstersen aşağıdaki opsiyonları açabilirsin:
+          # EXCLUDE_FORKED_REPOS: true
+          # EXCLUDED: "owner/repo,owner/baska-repo"

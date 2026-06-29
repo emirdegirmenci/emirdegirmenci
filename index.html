@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub Profil README — Önizleme & Seçici</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --border:#30363d; --text:#e6edf3;
+    --muted:#8b949e; --accent:#58a6ff; --chip:#21262d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--text);line-height:1.5}
+  header{padding:20px 24px;border-bottom:1px solid var(--border);background:var(--panel)}
+  header h1{margin:0;font-size:18px}
+  header p{margin:4px 0 0;color:var(--muted);font-size:13px}
+  .wrap{max-width:1000px;margin:0 auto;padding:24px}
+  .controls{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:20px}
+  .group label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
+               color:var(--muted);margin-bottom:8px}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px}
+  .tab{padding:8px 14px;border:1px solid var(--border);background:var(--chip);color:var(--text);
+       border-radius:8px;cursor:pointer;font-size:13px;transition:all .15s}
+  .tab:hover{border-color:var(--accent)}
+  .tab.active{background:var(--accent);color:#0d1117;border-color:var(--accent);font-weight:600}
+  .preview-shell{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff}
+  .preview-bar{background:var(--panel);padding:8px 14px;font-size:12px;color:var(--muted);
+               border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+  .light-toggle{cursor:pointer;color:var(--accent);font-size:12px;user-select:none}
+  /* GitHub README render alanı */
+  #preview{padding:28px 32px;background:#ffffff;color:#1f2328;min-height:300px}
+  #preview.dark{background:#0d1117;color:#e6edf3}
+  #preview h1{font-size:28px;border-bottom:1px solid #d0d7de;padding-bottom:.3em;margin-top:0}
+  #preview.dark h1{border-color:#30363d}
+  #preview h2{font-size:22px;border-bottom:1px solid #d0d7de;padding-bottom:.3em;margin-top:28px}
+  #preview.dark h2{border-color:#30363d}
+  #preview h3{font-size:17px}
+  #preview ul{padding-left:22px}
+  #preview li{margin:4px 0}
+  #preview img{max-width:100%;vertical-align:middle}
+  .center{text-align:center}
+  .row-imgs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .row-imgs img{flex:1 1 320px;max-width:48%}
+  .badges img{margin:3px}
+  .gif-note{border:2px dashed #d0d7de;border-radius:10px;padding:18px;text-align:center;color:#8b949e;font-size:13px}
+  #preview.dark .gif-note{border-color:#30363d}
+  details{margin-top:24px;border:1px solid var(--border);border-radius:10px;background:var(--panel)}
+  summary{padding:12px 16px;cursor:pointer;font-weight:600;font-size:14px}
+  .md-box{padding:0 16px 16px}
+  textarea{width:100%;height:320px;background:#0d1117;color:#e6edf3;border:1px solid var(--border);
+           border-radius:8px;padding:12px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px}
+  .copy{margin-top:8px;padding:8px 16px;background:var(--accent);color:#0d1117;border:none;
+        border-radius:8px;cursor:pointer;font-weight:600;font-size:13px}
+  .copy:active{transform:scale(.97)}
+  .hint{color:var(--muted);font-size:12px;margin-top:6px}
+  .steps{margin-top:24px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px 20px}
+  .steps h3{margin-top:0;font-size:14px}
+  .steps ol{margin:0;padding-left:20px;color:var(--muted);font-size:13px}
+  .steps code{background:var(--chip);padding:2px 6px;border-radius:4px;color:var(--text)}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header>
+  <h1>GitHub Profil README — Önizleme &amp; Seçici</h1>
+  <p>Tarz + tema seç → canlı gör → beğendiğinin markdown'ını kopyala. Kart görselleri dış sunuculardan yüklenir; internet gerekir.</p>
+</header>
+
+<div class="wrap">
+  <div class="controls">
+    <div class="group">
+      <label>Tarz</label>
+      <div class="tabs" id="styleTabs">
+        <div class="tab active" data-style="full">Dolu + animasyonlu</div>
+        <div class="tab" data-style="balanced">Orta / dengeli</div>
+        <div class="tab" data-style="minimal">Sade / minimal</div>
+      </div>
+    </div>
+    <div class="group">
+      <label>Tema</label>
+      <div class="tabs" id="themeTabs">
+        <div class="tab active" data-theme="tokyonight">Tokyo Night</div>
+        <div class="tab" data-theme="radical">Radical</div>
+        <div class="tab" data-theme="dracula">Dracula</div>
+        <div class="tab" data-theme="github_dark">GitHub Dark</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-shell">
+    <div class="preview-bar">
+      <span>📄 github.com/emirdegirmenci — profil önizleme</span>
+      <span class="light-toggle" id="lightToggle">🌓 Açık/Koyu zemin</span>
+    </div>
+    <div id="preview"></div>
+  </div>
+
+  <details open>
+    <summary>📋 Markdown kaynağı (seçtiğin kombinasyon)</summary>
+    <div class="md-box">
+      <textarea id="md" readonly></textarea>
+      <button class="copy" id="copyBtn">Kopyala</button>
+      <div class="hint">Bunu <code>emirdegirmenci/emirdegirmenci</code> reposundaki <code>README.md</code> dosyasına yapıştır.</div>
+    </div>
+  </details>
+
+  <div class="steps">
+    <h3>Nasıl yayına alınır?</h3>
+    <ol>
+      <li>GitHub'da <strong>kullanıcı adınla birebir aynı</strong> isimde repo aç: <code>emirdegirmenci</code> (Public + "Add a README" işaretli).</li>
+      <li>Yukarıdan tarz + tema seç, <strong>Kopyala</strong>'ya bas.</li>
+      <li><code>README.md</code> içeriğini sil, kopyaladığını yapıştır, commit'le.</li>
+      <li>Profiline git: <a href="https://github.com/emirdegirmenci" target="_blank">github.com/emirdegirmenci</a> — README en üstte görünür.</li>
+      <li>GIF eklemek istersen "Dolu" tarzındaki kesik çizgili alana <a href="https://giphy.com" target="_blank">Giphy</a>/<a href="https://tenor.com" target="_blank">Tenor</a> linkini koy.</li>
+    </ol>
+  </div>
+</div>
+
+<script>
+const USER = "emirdegirmenci";
+
+const THEMES = {
+  tokyonight:  { stats:"tokyonight",  typing:"70A5FD", trophy:"tokyonight", activity:"tokyo-night",     capsule:"0:1a1b27,100:24283b" },
+  radical:     { stats:"radical",     typing:"FE428E", trophy:"radical",    activity:"radical",         capsule:"0:000000,100:fe428e" },
+  dracula:     { stats:"dracula",     typing:"BD93F9", trophy:"dracula",    activity:"dracula",         capsule:"0:282a36,100:bd93f9" },
+  github_dark: { stats:"github_dark", typing:"58A6FF", trophy:"darkhub",    activity:"github-compact",  capsule:"0:0d1117,100:58a6ff" },
+};
+
+function U(theme){
+  const t = THEMES[theme];
+  return {
+    capsule:  `https://capsule-render.vercel.app/api?type=waving&color=${t.capsule}&height=200&section=header&text=Emir%20Degirmenci&fontSize=48&fontColor=ffffff&fontAlignY=38&desc=IT%20%2F%20AI%20Engineer%20%40%20Koc%20University&descSize=16&descAlignY=58`,
+    typing:   `https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=3000&pause=1000&color=${t.typing}&center=true&vCenter=true&width=620&lines=AI+%2F+Backend+Engineer;Building+AI+agent+platforms;RAG+%E2%80%A2+LLMs+%E2%80%A2+Data+pipelines`,
+    stats:    `https://github-readme-stats.vercel.app/api?username=${USER}&show_icons=true&hide_border=true&count_private=true&theme=${t.stats}`,
+    langs:    `https://github-readme-stats.vercel.app/api/top-langs/?username=${USER}&layout=compact&hide_border=true&theme=${t.stats}`,
+    streak:   `https://github-readme-streak-stats.herokuapp.com/?user=${USER}&hide_border=true&theme=${t.stats}`,
+    trophy:   `https://github-profile-trophy.vercel.app/?username=${USER}&theme=${t.trophy}&no-frame=true&column=7&margin-w=8&margin-h=8`,
+    activity: `https://github-readme-activity-graph.vercel.app/graph?username=${USER}&theme=${t.activity}&hide_border=true`,
+    views:    `https://komarev.com/ghpvc/?username=${USER}&color=${t.typing}&style=flat&label=Profile+views`,
+  };
+}
+
+const BADGES = [
+  {l:"Python",       c:"3776AB", logo:"python",        lc:"white"},
+  {l:"FastAPI",      c:"009688", logo:"fastapi",       lc:"white"},
+  {l:"PostgreSQL",   c:"4169E1", logo:"postgresql",    lc:"white"},
+  {l:"pgvector",     c:"4169E1", logo:"postgresql",    lc:"white"},
+  {l:"Redis",        c:"FF4438", logo:"redis",         lc:"white"},
+  {l:"Docker",       c:"2496ED", logo:"docker",        lc:"white"},
+  {l:"Playwright",   c:"2EAD33", logo:"playwright",    lc:"white"},
+  {l:"Google%20Gemini", c:"8E75B2", logo:"googlegemini", lc:"white", show:"Google Gemini"},
+  {l:"React",        c:"20232A", logo:"react",         lc:"61DAFB"},
+  {l:"TypeScript",   c:"3178C6", logo:"typescript",    lc:"white"},
+];
+function badgeUrl(b){ return `https://img.shields.io/badge/${b.l}-${b.c}?style=for-the-badge&logo=${b.logo}&logoColor=${b.lc}`; }
+
+const INTERESTS = [
+  "🤖 <b>AI agent orchestration</b> & multi-agent systems — agent lifecycle, MCP servers, tool orchestration",
+  "🔎 <b>RAG &amp; knowledge bases</b> — pgvector, stepped / semantic search, query decomposition, LLM-based evaluation",
+  "🧠 <b>LLM integration</b> — Google Gemini / Vertex AI, prompt engineering, agentic workflows",
+  "⚙️ <b>Backend engineering</b> — Python, FastAPI, PostgreSQL, SQLAlchemy, Redis, Docker",
+  "🕸️ <b>Web scraping &amp; data pipelines</b> — Playwright extraction, data cleaning, deduplication & normalization",
+];
+const INTERESTS_MD = INTERESTS.map(s => "- " + s.replace(/<\/?b>/g,"**"));
+
+const INTRO = "IT / AI Engineer @ Koç University. I build AI agent platforms — agent orchestration, retrieval-augmented knowledge bases, and the data pipelines that feed them.";
+
+// ---------- PREVIEW (HTML) ----------
+function renderHtml(style, theme){
+  const u = U(theme);
+  const img = (src,cls="") => `<img class="${cls}" src="${src}" alt="">`;
+  const badges = `<p class="badges center">${BADGES.map(b=>img(badgeUrl(b))).join("")}</p>`;
+  const about = `<h2>👋 About me</h2><p>${INTRO}</p><ul>${INTERESTS.map(i=>`<li>${i}</li>`).join("")}</ul>`;
+
+  if(style==="minimal"){
+    return `
+      <h1>Hi, I'm Emir 👋</h1>
+      <p>${INTRO}</p>
+      <p><b>Focus:</b> AI agents · RAG · LLMs · Python/FastAPI · data pipelines</p>
+      <p class="badges">${BADGES.slice(0,6).map(b=>img(badgeUrl(b))).join("")}</p>
+      <p>${img(u.stats)}</p>
+    `;
+  }
+  if(style==="balanced"){
+    return `
+      <p class="center">${img(u.capsule)}</p>
+      ${about}
+      <h2>🛠️ Tech stack</h2>
+      ${badges}
+      <h2>📊 GitHub stats</h2>
+      <div class="row-imgs">${img(u.stats)}${img(u.langs)}</div>
+    `;
+  }
+  // full
+  return `
+    <p class="center">${img(u.capsule)}</p>
+    <p class="center">${img(u.typing)}</p>
+    <p class="center">${img(u.views)}</p>
+    ${about}
+    <h2>🛠️ Tech stack</h2>
+    ${badges}
+    <h2>📊 GitHub stats</h2>
+    <div class="row-imgs">${img(u.stats)}${img(u.langs)}</div>
+    <p class="center">${img(u.streak)}</p>
+    <p class="center">${img(u.activity)}</p>
+    <h2>🏆 Trophies</h2>
+    <p class="center">${img(u.trophy)}</p>
+    <h2>🎬 Bonus</h2>
+    <div class="gif-note">Buraya bir GIF koyabilirsin — Giphy/Tenor linkini &lt;img src="..." width="400"&gt; ile ekle.</div>
+  `;
+}
+
+// ---------- MARKDOWN SOURCE ----------
+function renderMd(style, theme){
+  const u = U(theme);
+  const badges = BADGES.map(b=>`![${b.show||b.l}](${badgeUrl(b)})`).join(" ");
+  const about = ["## 👋 About me","",INTRO,"",...INTERESTS_MD].join("\n");
+
+  if(style==="minimal"){
+    return [
+      "# Hi, I'm Emir 👋","",
+      INTRO,"",
+      "**Focus:** AI agents · RAG · LLMs · Python/FastAPI · data pipelines","",
+      BADGES.slice(0,6).map(b=>`![${b.show||b.l}](${badgeUrl(b)})`).join(" "),"",
+      `![stats](${u.stats})`
+    ].join("\n");
+  }
+  if(style==="balanced"){
+    return [
+      `<p align="center"><img src="${u.capsule}" alt="header"/></p>`,"",
+      about,"",
+      "## 🛠️ Tech stack","",badges,"",
+      "## 📊 GitHub stats","",
+      `<p align="center">`,
+      `  <img src="${u.stats}" alt="stats" />`,
+      `  <img src="${u.langs}" alt="top langs" />`,
+      `</p>`
+    ].join("\n");
+  }
+  // full
+  return [
+    `<p align="center"><img src="${u.capsule}" alt="header"/></p>`,"",
+    `<p align="center"><img src="${u.typing}" alt="typing"/></p>`,"",
+    `<p align="center"><img src="${u.views}" alt="views"/></p>`,"",
+    about,"",
+    "## 🛠️ Tech stack","",badges,"",
+    "## 📊 GitHub stats","",
+    `<p align="center">`,
+    `  <img src="${u.stats}" alt="stats" />`,
+    `  <img src="${u.langs}" alt="top langs" />`,
+    `</p>`,"",
+    `<p align="center"><img src="${u.streak}" alt="streak"/></p>`,"",
+    `<p align="center"><img src="${u.activity}" alt="activity graph"/></p>`,"",
+    "## 🏆 Trophies","",
+    `<p align="center"><img src="${u.trophy}" alt="trophies"/></p>`,"",
+    "## 🎬 Bonus","",
+    "<!-- Buraya GIF ekleyebilirsin: -->",
+    `<!-- <p align="center"><img src="GIF_LINKI" width="400"/></p> -->`
+  ].join("\n");
+}
+
+// ---------- STATE + WIRING ----------
+let state = { style:"full", theme:"tokyonight" };
+
+function render(){
+  document.getElementById("preview").innerHTML = renderHtml(state.style, state.theme);
+  document.getElementById("md").value = renderMd(state.style, state.theme);
+}
+
+document.getElementById("styleTabs").addEventListener("click", e=>{
+  const t = e.target.closest(".tab"); if(!t) return;
+  state.style = t.dataset.style;
+  document.querySelectorAll("#styleTabs .tab").forEach(x=>x.classList.toggle("active", x===t));
+  render();
+});
+document.getElementById("themeTabs").addEventListener("click", e=>{
+  const t = e.target.closest(".tab"); if(!t) return;
+  state.theme = t.dataset.theme;
+  document.querySelectorAll("#themeTabs .tab").forEach(x=>x.classList.toggle("active", x===t));
+  render();
+});
+document.getElementById("lightToggle").addEventListener("click", ()=>{
+  document.getElementById("preview").classList.toggle("dark");
+});
+document.getElementById("copyBtn").addEventListener("click", ()=>{
+  const ta = document.getElementById("md");
+  navigator.clipboard.writeText(ta.value).then(()=>{
+    const b = document.getElementById("copyBtn");
+    b.textContent = "✓ Kopyalandı"; setTimeout(()=>b.textContent="Kopyala", 1500);
+  });
+});
+
+render();
+</script>
+</body>
+</html>
