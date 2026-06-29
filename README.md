@@ -1,4 +1,4 @@
-<h1 align="center">Emir Degirmenci</h1>
+<h1 align="center">Emir Değirmenci</h1>
 
 <p align="center">
   <em>Building AI-powered products, data-heavy workflows, and agentic systems.</em>
