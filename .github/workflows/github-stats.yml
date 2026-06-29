@@ -23,7 +23,10 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           user: emirdegirmenci
           filename: generated/metrics.svg
-          base: header
+          base: ""
           config_timezone: Europe/Istanbul
+          # Sadece katkı ısı haritası (isocalendar) — sade ve görsel
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
           # Private repo katkıları (org dahil) toplam istatistiklerde sayılır
           repositories_affiliations: owner, collaborator, organization_member
