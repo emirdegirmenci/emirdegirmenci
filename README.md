@@ -47,7 +47,7 @@ running after the first demo.
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img src="./generated/overview.svg" alt="Emir's GitHub stats" />
+  <img src="./generated/metrics.svg" alt="Emir's GitHub stats" />
 </p>
 
 ---

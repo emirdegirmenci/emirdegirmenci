@@ -1,4 +1,4 @@
-name: Generate GitHub Stats
+name: Generate GitHub Metrics
 
 on:
   # Her gün 03:00 UTC'de çalışır
@@ -12,15 +12,18 @@ on:
       - main
 
 jobs:
-  generate:
+  metrics:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Generate stats images
-        uses: jstrieb/github-stats@master
+      # Güvenlik için tam commit SHA'sına pinlendi (v3.34)
+      - uses: lowlighter/metrics@65836723097537a54cd8eb90f61839426b4266b6
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
-          # İstersen aşağıdaki opsiyonları açabilirsin:
-          # EXCLUDE_FORKED_REPOS: true
-          # EXCLUDED: "owner/repo,owner/baska-repo"
+          user: emirdegirmenci
+          filename: generated/metrics.svg
+          base: header, activity, community, repositories, metadata
+          config_timezone: Europe/Istanbul
+          # Private repo katkıları (org dahil) toplam istatistiklerde sayılır
+          repositories_affiliations: owner, collaborator, organization_member
