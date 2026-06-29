@@ -23,7 +23,7 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           user: emirdegirmenci
           filename: generated/metrics.svg
-          base: header, activity, community, repositories, metadata
+          base: header
           config_timezone: Europe/Istanbul
           # Private repo katkıları (org dahil) toplam istatistiklerde sayılır
           repositories_affiliations: owner, collaborator, organization_member
