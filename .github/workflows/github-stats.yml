@@ -27,8 +27,11 @@ jobs:
           template: terminal
           config_animations: yes
           config_timezone: Europe/Istanbul
-          # Commit sayısı vb. temel istatistikler
-          base: header
+          # Hesap açılışı / takipçi gibi "kim olduğun" bilgileri YOK
+          base: ""
+          # Son 1 yıl katkı sayısı + ısı haritası (commit sayısı niyetine)
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
           # Aktivite akışı: commit (push), PR, issue, release
           plugin_activity: yes
           plugin_activity_limit: 5
