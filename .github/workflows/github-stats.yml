@@ -23,12 +23,22 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           user: emirdegirmenci
           filename: generated/metrics.svg
-          base: ""
+          # Terminal görünümü + yanıp sönen imleç animasyonu
+          template: terminal
+          config_animations: yes
           config_timezone: Europe/Istanbul
-          # Sadece aktivite akışı: commit (push), PR, issue, release
+          # Commit sayısı vb. temel istatistikler
+          base: header
+          # Aktivite akışı: commit (push), PR, issue, release
           plugin_activity: yes
-          plugin_activity_limit: 6
+          plugin_activity_limit: 5
           plugin_activity_days: 0
           plugin_activity_filter: push, pull_request, issue, release
+          # Aktif gün/saat alışkanlıkları
+          plugin_habits: yes
+          plugin_habits_from: 200
+          plugin_habits_days: 14
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
           # Private repo katkıları (org dahil) toplam istatistiklerde sayılır
           repositories_affiliations: owner, collaborator, organization_member
