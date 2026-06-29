@@ -25,8 +25,10 @@ jobs:
           filename: generated/metrics.svg
           base: ""
           config_timezone: Europe/Istanbul
-          # Sadece katkı ısı haritası (isocalendar) — sade ve görsel
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
+          # Sadece aktivite akışı: commit (push), PR, issue, release
+          plugin_activity: yes
+          plugin_activity_limit: 6
+          plugin_activity_days: 0
+          plugin_activity_filter: push, pull_request, issue, release
           # Private repo katkıları (org dahil) toplam istatistiklerde sayılır
           repositories_affiliations: owner, collaborator, organization_member
